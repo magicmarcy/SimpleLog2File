@@ -18,4 +18,8 @@ public final class Konst {
   public static final String METHOD_DELIMITER = ".";
 
   public static final String CLASS_SPLIT_REGEX = "\\.";
+
+  private Konst() {
+    // private empty constructor to hide the public one
+  }
 }

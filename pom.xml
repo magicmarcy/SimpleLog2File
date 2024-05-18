@@ -6,7 +6,7 @@
 
     <groupId>de.magicmarcy.simplelog2file</groupId>
     <artifactId>SimpleLog2File</artifactId>
-    <version>1.1</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>SimpleLog2File</name>

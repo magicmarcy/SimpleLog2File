@@ -9,6 +9,7 @@ public final class Konst {
   static final String INFO_MESSAGE = "INFO ";
   static final String ERROR_MESSAGE = "ERROR";
   static final String WARN_MESSAGE = "WARN ";
+  static final String SQL_MESSAGE = "SQL  ";
 
   public static final String FILENAME_DATE_PATTERN = "yyyy-MM-dd";
   public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";

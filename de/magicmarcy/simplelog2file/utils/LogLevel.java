@@ -8,7 +8,8 @@ public enum LogLevel {
   DEBUG(Konst.DEBUG_MESSAGE),
   INFO(Konst.INFO_MESSAGE),
   ERROR(Konst.ERROR_MESSAGE),
-  WARN(Konst.WARN_MESSAGE);
+  WARN(Konst.WARN_MESSAGE),
+  SQL(Konst.SQL_MESSAGE);
 
   private final String loglevelString;
 

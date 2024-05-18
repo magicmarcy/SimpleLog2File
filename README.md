@@ -1,5 +1,7 @@
 # SimpleLog2File
 
+> **UPDATE: Project is now a maven-project so you can build the jar yourself and add it to your project as lib.**
+
 This is just a simple file logger for your Java project. By default, it creates a logfile per day in the root folder of your project.
 In your logfile you will find lines like this:
 ```

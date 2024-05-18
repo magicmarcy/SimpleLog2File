@@ -78,10 +78,13 @@ You can choose between different LogLevels, but it is only to show that in the l
 __There is no option to log just one specific level!__
 ```
 logger.trace();
+logger.traceEntry();
+logger.traceExit();
 logger.debug(;
 logger.info();
 logger.error();
 logger.warn();
+logger.sql();
 ```
 
 ## Error handling

@@ -1,6 +1,8 @@
 package de.magicmarcy.simplelog2file.utils;
 
 /**
+ * Defines the possible loglevels than can be used
+ *
  * @author MagicMarcy | 02.04.2022
  */
 public enum LogLevel {

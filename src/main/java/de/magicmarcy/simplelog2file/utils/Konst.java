@@ -1,6 +1,8 @@
 package de.magicmarcy.simplelog2file.utils;
 
 /**
+ * Useful constants for the application
+ *
  * @author MagicMarcy | 03.04.2022
  */
 public final class Konst {

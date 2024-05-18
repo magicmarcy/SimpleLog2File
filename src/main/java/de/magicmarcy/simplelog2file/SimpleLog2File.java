@@ -11,7 +11,7 @@ import de.magicmarcy.simplelog2file.utils.LogLevel;
 
 /**
  * Just a simple file-Logger. Per default the file is stored in the project root-folder but the destination can be overwritten
- * in the constructor of this class
+ * in the constructor of this class.
  *
  * @author MagicMarcy | 02.04.2022
  */
@@ -47,6 +47,9 @@ public class SimpleLog2File {
 
   /**
    * creates a new line in the logfile with level TRACE
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Proceed with method
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -57,6 +60,9 @@ public class SimpleLog2File {
   /**
    * creates a new line in the logfile with level TRACE and the output "Entry"
    * to mark the method entry in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Entry
+   * </pre></blockquote>
    */
   public void traceEntry() {
     writeMessageToFile(LogLevel.TRACE, "Entry");
@@ -65,6 +71,9 @@ public class SimpleLog2File {
   /**
    * creates a new line in the logfile with level TRACE and the output "Entry"
    * followed by the object to mark the method entry in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Entry -> name=simple
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -75,6 +84,9 @@ public class SimpleLog2File {
   /**
    * creates a new line in the logfile with level TRACE and the output "Exit"
    * to mark the method exit in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Exit
+   * </pre></blockquote>
    */
   public void traceExit() {
     writeMessageToFile(LogLevel.TRACE, "Exit");
@@ -83,6 +95,9 @@ public class SimpleLog2File {
   /**
    * creates a new line in the logfile with level TRACE and the output "Exit"
    * followed by the object to mark the method exit in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Exit -> 1
+   * </pre></blockquote>
    *
    * @param result the log-message or an object
    * @return returns the result as passed in
@@ -95,6 +110,9 @@ public class SimpleLog2File {
 
   /**
    * creates a new line in the logfile with level DEBUG
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [DEBUG] [Main.main()] Set name to 'peter'
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -104,6 +122,9 @@ public class SimpleLog2File {
 
   /**
    * creates a new line in the logfile with level INFO
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [INFO ] [Main.main()] User is not an admin
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -112,7 +133,10 @@ public class SimpleLog2File {
   }
 
   /**
-   * creates a new line in the logfile with level ERROR
+   * creates a new line in the logfile with level ERROR as followed
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [ERROR] [Main.main()] Error in main-method!
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -121,7 +145,10 @@ public class SimpleLog2File {
   }
 
   /**
-   * creates a new line in the logfile with level WARN
+   * creates a new line in the logfile with level WARN as followed
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [WARN ] [Main.main()] Could not found a match
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -132,6 +159,10 @@ public class SimpleLog2File {
   /**
    * creates a new line in the logfile with level SQL to
    * log sql statements
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [SQL  ] [Main.main()] Folgender SQL wird ausgefuehrt:
+   * SELECT * FROM PERSON
+   * </pre></blockquote>
    *
    * @param object the log-message or an object
    */
@@ -178,13 +209,22 @@ public class SimpleLog2File {
    * @return methodname e.g. Main.main()
    */
   private String getFullMethodName() {
-    final StackTraceElement[] stackTraceArray = Thread.currentThread().getStackTrace();
-    final StackTraceElement stackTraceElement = stackTraceArray[5];
+    String simplename = "";
+    String methodname = "";
 
-    final String[] classNameArray = stackTraceElement.getClassName().split(Konst.CLASS_SPLIT_REGEX);
-    final String simpleName = classNameArray[classNameArray.length - 1];
+    try {
+      final StackTraceElement[] stackTraceArray = Thread.currentThread().getStackTrace();
+      final StackTraceElement stackTraceElement = stackTraceArray[5];
 
-    return simpleName + Konst.METHOD_DELIMITER + stackTraceElement.getMethodName() + Konst.METHOD_BRACES;
+      final String[] classNameArray = stackTraceElement.getClassName().split(Konst.CLASS_SPLIT_REGEX);
+      simplename = classNameArray[classNameArray.length - 1];
+      methodname = stackTraceElement.getMethodName();
+
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
+
+    return simplename + Konst.METHOD_DELIMITER + methodname + Konst.METHOD_BRACES;
   }
 
   /**

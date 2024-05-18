@@ -17,8 +17,20 @@ public final class Konst {
   public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
   public static final String FILENAME_EXTENSION = ".log";
 
-  public static final String METHOD_BRACES = "()";
+  public static final String METHOD_BRACKETS = "()";
   public static final String METHOD_DELIMITER = ".";
+  public static final String SQUARE_BRACKET_LEFT = "[";
+  public static final String SQUARE_BRACKET_RIGHT = "]";
+  public static final String SPACE = " ";
+
+  public static final String NULL = "null";
+
+  public static final String ENTRY = "Entry";
+  public static final String ENTRY_VALUE = "Entry -> ";
+  public static final String EXIT = "Exit";
+  public static final String EXIT_VALUE = "Exit -> ";
+
+  public static final String SQL_LOG_MESSAE = "Folgender SQL wird ausgefuehrt:\n";
 
   public static final String CLASS_SPLIT_REGEX = "\\.";
 

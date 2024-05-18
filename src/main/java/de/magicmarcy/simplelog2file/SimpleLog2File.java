@@ -54,7 +54,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void trace(final Object object) {
-    writeMessageToFile(LogLevel.TRACE, object.toString());
+    writeMessageToFile(LogLevel.TRACE, getString(object));
   }
 
   /**
@@ -65,7 +65,7 @@ public class SimpleLog2File {
    * </pre></blockquote>
    */
   public void traceEntry() {
-    writeMessageToFile(LogLevel.TRACE, "Entry");
+    writeMessageToFile(LogLevel.TRACE, Konst.ENTRY);
   }
 
   /**
@@ -78,7 +78,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void traceEntry(final Object object) {
-    writeMessageToFile(LogLevel.TRACE, "Entry -> " + (object == null ? "null" : object.toString()));
+    writeMessageToFile(LogLevel.TRACE, Konst.ENTRY_VALUE + getString(object));
   }
 
   /**
@@ -89,7 +89,7 @@ public class SimpleLog2File {
    * </pre></blockquote>
    */
   public void traceExit() {
-    writeMessageToFile(LogLevel.TRACE, "Exit");
+    writeMessageToFile(LogLevel.TRACE, Konst.EXIT);
   }
 
   /**
@@ -103,7 +103,7 @@ public class SimpleLog2File {
    * @return returns the result as passed in
    */
   public <T> T traceExit(final T result) {
-    writeMessageToFile(LogLevel.TRACE, "Exit -> " + (result == null ? "null" : result.toString()));
+    writeMessageToFile(LogLevel.TRACE, Konst.EXIT_VALUE + getString(result));
 
     return result;
   }
@@ -117,7 +117,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void debug(final Object object) {
-    writeMessageToFile(LogLevel.DEBUG, object.toString());
+    writeMessageToFile(LogLevel.DEBUG, getString(object));
   }
 
   /**
@@ -129,7 +129,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void info(final Object object) {
-    writeMessageToFile(LogLevel.INFO, object.toString());
+    writeMessageToFile(LogLevel.INFO, getString(object));
   }
 
   /**
@@ -141,7 +141,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void error(final Object object) {
-    writeMessageToFile(LogLevel.ERROR, object.toString());
+    writeMessageToFile(LogLevel.ERROR, getString(object));
   }
 
   /**
@@ -153,7 +153,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void warn(final Object object) {
-    writeMessageToFile(LogLevel.WARN, object.toString());
+    writeMessageToFile(LogLevel.WARN, getString(object));
   }
 
   /**
@@ -167,7 +167,7 @@ public class SimpleLog2File {
    * @param object the log-message or an object
    */
   public void sql(final Object object) {
-    writeMessageToFile(LogLevel.SQL, "Folgender SQL wird ausgefuehrt:\n" + object.toString());
+    writeMessageToFile(LogLevel.SQL, Konst.SQL_LOG_MESSAE + getString(object));
   }
 
   /**
@@ -196,10 +196,11 @@ public class SimpleLog2File {
    * @return complete line for the logfile
    */
   private String createLogFileMessage(final LogLevel loglevel, final String message) {
-    return getFormattedDateOfNow(Konst.DATETIME_PATTERN) +
-        " [" + loglevel.getLoglevelString() + "] " +
-        "[" + getFullMethodName() + "] " +
-        message;
+    final String dateTimeString = getFormattedDateOfNow(Konst.DATETIME_PATTERN);
+    final String logLevelString = Konst.SQUARE_BRACKET_LEFT + loglevel.getLoglevelString() + Konst.SQUARE_BRACKET_RIGHT;
+    final String methodString = Konst.SQUARE_BRACKET_LEFT + getFullMethodName() + Konst.SQUARE_BRACKET_RIGHT;
+
+    return String.join(Konst.SPACE, dateTimeString, logLevelString, methodString, message);
   }
 
   /**
@@ -224,7 +225,7 @@ public class SimpleLog2File {
       e.printStackTrace();
     }
 
-    return simplename + Konst.METHOD_DELIMITER + methodname + Konst.METHOD_BRACES;
+    return simplename + Konst.METHOD_DELIMITER + methodname + Konst.METHOD_BRACKETS;
   }
 
   /**
@@ -247,5 +248,14 @@ public class SimpleLog2File {
     final LocalDateTime now = LocalDateTime.now();
 
     return dateFormatter.format(now);
+  }
+
+  /**
+   * Returns the toString-Method if the object is not null otherwise the string 'null'
+   * @param object passed object
+   * @return toString of the object, else the string 'null'
+   */
+  private String getString(final Object object) {
+    return object == null ? Konst.NULL : object.toString();
   }
 }

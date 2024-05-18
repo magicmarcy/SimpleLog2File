@@ -55,6 +55,45 @@ public class SimpleLog2File {
   }
 
   /**
+   * creates a new line in the logfile with level TRACE and the output "Entry"
+   * to mark the method entry in the logfile
+   */
+  public void traceEntry() {
+    writeMessageToFile(LogLevel.TRACE, "Entry");
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Entry"
+   * followed by the object to mark the method entry in the logfile
+   *
+   * @param object the log-message or an object
+   */
+  public void traceEntry(final Object object) {
+    writeMessageToFile(LogLevel.TRACE, "Entry -> " + (object == null ? "null" : object.toString()));
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Exit"
+   * to mark the method exit in the logfile
+   */
+  public void traceExit() {
+    writeMessageToFile(LogLevel.TRACE, "Exit");
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Exit"
+   * followed by the object to mark the method exit in the logfile
+   *
+   * @param result the log-message or an object
+   * @return returns the result as passed in
+   */
+  public <T> T traceExit(final T result) {
+    writeMessageToFile(LogLevel.TRACE, "Exit -> " + (result == null ? "null" : result.toString()));
+
+    return result;
+  }
+
+  /**
    * creates a new line in the logfile with level DEBUG
    *
    * @param object the log-message or an object
@@ -88,6 +127,16 @@ public class SimpleLog2File {
    */
   public void warn(final Object object) {
     writeMessageToFile(LogLevel.WARN, object.toString());
+  }
+
+  /**
+   * creates a new line in the logfile with level SQL to
+   * log sql statements
+   *
+   * @param object the log-message or an object
+   */
+  public void sql(final Object object) {
+    writeMessageToFile(LogLevel.SQL, "Folgender SQL wird ausgefuehrt:\n" + object.toString());
   }
 
   /**

@@ -58,6 +58,33 @@ public class SimpleLog2File {
   }
 
   /**
+   * creates a new line in the logfile with level TRACE with a String
+   * <blockquote><pre>
+   * logger.trace("Proceed with {}", "method");
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Proceed with method
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   */
+  public void trace(final String message) {
+    writeMessageToFile(LogLevel.TRACE, message);
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE with a formatted String
+   * <blockquote><pre>
+   * logger.trace("Proceed with {}", "method");
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Proceed with method
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void trace(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.TRACE, format(message, replacements));
+  }
+
+  /**
    * creates a new line in the logfile with level TRACE and the output "Entry"
    * to mark the method entry in the logfile
    * <blockquote><pre>
@@ -79,6 +106,34 @@ public class SimpleLog2File {
    */
   public void traceEntry(final Object object) {
     writeMessageToFile(LogLevel.TRACE, Konst.ENTRY_VALUE + getString(object));
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Entry"
+   * followed by the object to mark the method entry in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Entry -> name=simple
+   * </pre></blockquote>
+   *
+   * @param message the log-message
+   */
+  public void traceEntry(final String message) {
+    writeMessageToFile(LogLevel.TRACE, Konst.ENTRY_VALUE + message);
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Entry"
+   * followed by the object to mark the method entry in the logfile and a formatted String
+   * <blockquote><pre>
+   * logger.traceEntry("name={}", "simple");
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Entry -> name=simple
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void traceEntry(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.TRACE, Konst.ENTRY_VALUE + format(message, replacements));
   }
 
   /**
@@ -121,6 +176,33 @@ public class SimpleLog2File {
   }
 
   /**
+   * creates a new line in the logfile with level DEBUG with a String
+   * <blockquote><pre>
+   * logger.debug("Set name to peter");
+   * 2024-01-10 17:23:02.009 [DEBUG] [Main.main()] Set name to 'peter'
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   */
+  public void debug(final String message) {
+    writeMessageToFile(LogLevel.DEBUG, message);
+  }
+
+  /**
+   * creates a new line in the logfile with level DEBUG with a formattet String
+   * <blockquote><pre>
+   * logger.debug("Set name to {}", "peter");
+   * 2024-01-10 17:23:02.009 [DEBUG] [Main.main()] Set name to 'peter'
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void debug(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.DEBUG, format(message, replacements));
+  }
+
+  /**
    * creates a new line in the logfile with level INFO
    * <blockquote><pre>
    * 2024-01-10 17:23:02.009 [INFO ] [Main.main()] User is not an admin
@@ -130,6 +212,33 @@ public class SimpleLog2File {
    */
   public void info(final Object object) {
     writeMessageToFile(LogLevel.INFO, getString(object));
+  }
+
+  /**
+   * creates a new line in the logfile with level INFO and a String
+   * <blockquote><pre>
+   * logger.info("User is not am admin");
+   * 2024-01-10 17:23:02.009 [INFO ] [Main.main()] User is not an admin
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   */
+  public void info(final String message) {
+    writeMessageToFile(LogLevel.INFO, message);
+  }
+
+  /**
+   * creates a new line in the logfile with level INFO and a formatted String
+   * <blockquote><pre>
+   * logger.info("User is not am {}", "admin");
+   * 2024-01-10 17:23:02.009 [INFO ] [Main.main()] User is not an admin
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void info(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.INFO, format(message, replacements));
   }
 
   /**
@@ -145,6 +254,33 @@ public class SimpleLog2File {
   }
 
   /**
+   * creates a new line in the logfile with level ERROR as followed with a String
+   * <blockquote><pre>
+   * logger.error("Error in main-method");
+   * 2024-01-10 17:23:02.009 [ERROR] [Main.main()] Error in main-method!
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   */
+  public void error(final String message) {
+    writeMessageToFile(LogLevel.ERROR, message);
+  }
+
+  /**
+   * creates a new line in the logfile with level ERROR as followed with a formatted String
+   * <blockquote><pre>
+   * logger.error("Error in {}-method", "main");
+   * 2024-01-10 17:23:02.009 [ERROR] [Main.main()] Error in main-method!
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void error(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.ERROR, format(message, replacements));
+  }
+
+  /**
    * creates a new line in the logfile with level WARN as followed
    * <blockquote><pre>
    * 2024-01-10 17:23:02.009 [WARN ] [Main.main()] Could not found a match
@@ -154,6 +290,33 @@ public class SimpleLog2File {
    */
   public void warn(final Object object) {
     writeMessageToFile(LogLevel.WARN, getString(object));
+  }
+
+  /**
+   * creates a new line in the logfile with level WARN as followed and a String
+   * <blockquote><pre>
+   * logger.warn("Could not found a match for test");
+   * 2024-01-10 17:23:02.009 [WARN ] [Main.main()] Could not found a match for test
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   */
+  public void warn(final String message) {
+    writeMessageToFile(LogLevel.WARN, message);
+  }
+
+  /**
+   * creates a new line in the logfile with level WARN as followed and a formatted String
+   * <blockquote><pre>
+   * logger.warn("Could not found a match for {}", "test");
+   * 2024-01-10 17:23:02.009 [WARN ] [Main.main()] Could not found a match for test
+   * </pre></blockquote>
+   *
+   * @param message the given message with {} to replace
+   * @param replacements the replacement values
+   */
+  public void warn(final String message, final String... replacements) {
+    writeMessageToFile(LogLevel.WARN, format(message, replacements));
   }
 
   /**
@@ -257,5 +420,30 @@ public class SimpleLog2File {
    */
   private String getString(final Object object) {
     return object == null ? Konst.NULL : object.toString();
+  }
+
+  private String format(final String message, final String... replacements) {
+    if (message == null || replacements == null || replacements.length == 0) {
+      return message;
+    }
+
+    final StringBuilder result = new StringBuilder();
+    int replacementIndex = 0;
+
+    for (int i = 0; i < message.length(); i++) {
+      if (message.charAt(i) == '{' && (i + 1) < message.length() && message.charAt(i + 1) == '}') {
+        if (replacementIndex < replacements.length) {
+          result.append(replacements[replacementIndex++]);
+        } else {
+          result.append("{}");
+        }
+
+        i++;
+      } else {
+        result.append(message.charAt(i));
+      }
+    }
+
+    return result.toString();
   }
 }

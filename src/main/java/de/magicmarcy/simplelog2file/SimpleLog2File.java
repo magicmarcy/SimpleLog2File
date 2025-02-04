@@ -149,6 +149,17 @@ public class SimpleLog2File {
 
   /**
    * creates a new line in the logfile with level TRACE and the output "Exit"
+   * to mark the method exit in the logfile
+   * <blockquote><pre>
+   * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Exit -> This ist the end
+   * </pre></blockquote>
+   */
+  public void traceExit(final String message) {
+    writeMessageToFile(LogLevel.TRACE, Konst.EXIT_VALUE + message);
+  }
+
+  /**
+   * creates a new line in the logfile with level TRACE and the output "Exit"
    * followed by the object to mark the method exit in the logfile
    * <blockquote><pre>
    * 2024-01-10 17:23:02.009 [TRACE] [Main.main()] Exit -> 1
